@@ -1,0 +1,43 @@
+<!-- Input con el termino de búsqueda -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="md-form mt-0 active-cyan-2 mb-3 input-group">
+            <input [(ngModel)]="searchText" (ngModelChange)="onChangeValue()" type="text" class="form-control" placeholder="Introduce la comida...">
+            <button *ngIf="searchText.length > 0" type="button" class="btn bg-transparent" (click)="cleanData()">X</button>
+        </div>
+    </div>
+</div>
+
+<!-- Lista de items con el criterio de búsqueda introducido por el usuario -->
+<div class="row" *ngIf="items.length > 0 && !loading">
+    <div class="col-xs-12 text-center">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of items">
+                <a class="list-group-item list-group-item-action">
+                    <img *ngIf="item.image_url" class="img-fluid tamanio-imagen" [src]="item.image_url" [alt]="item.name">
+                    <span class="p-5">{{ item.name }}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Mensaje cuando no hay elementos con la búsqueda realizada -->
+<div class="row" *ngIf="items.length === 0 && searchText && !loading">
+    <div class="col-xs-12">
+        <div class="alert alert-warning" role="alert">
+            No se ha encontrado ningún elemento.
+        </div>
+    </div>
+</div>
+
+<!-- Loading lista -->
+<div class="row" *ngIf="loading">
+    <div class="col-xs-12">
+        <div class="d-flex justify-content-center mt-3">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+        </div>
+    </div>
+</div>
