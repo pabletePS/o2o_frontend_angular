@@ -15,7 +15,7 @@ export class HomeComponent {
   searchText: string = '';
 
   /* Variable para controlar el loading del componente */
-  loading: boolean;
+  loading: boolean = false;
 
   constructor( private _punkApiService: PunkApiService ) {
     //Invocamos a la funcion que llama a la capa de servicios de punk API
